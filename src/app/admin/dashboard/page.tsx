@@ -108,8 +108,8 @@ const AdminDashboard = () => {
         <ul className="space-y-2">
         {
               navsLinks.map((item, index)=>{
-              return <li>
-                  <Link href={item.href} key={index} className='text-blue-500 hover:underline'>{item.name}</Link>
+              return <li key={index}>
+                  <Link href={item.href} className='text-blue-500 hover:underline'>{item.name}</Link>
                 </li>
               })
           }
