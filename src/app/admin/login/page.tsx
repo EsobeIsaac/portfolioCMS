@@ -33,8 +33,6 @@ const LoginPage = () => {
     
     const requestClass = new RequestClass('/api/v1/user/auth/signin');
 
-    console.log(localStorage.getItem('token'))
-
     const login = async(e: React.FormEvent) => {
 
         e.preventDefault()
@@ -43,7 +41,9 @@ const LoginPage = () => {
         try {
           const res =  await requestClass.postRequest(userData);
 
-          localStorage.setItem('token', `Bearer ${res.data.token}`)
+          console.log(process.env.NEXT_PUBLIC_ENV)
+
+          if(process.env.NEXT_PUBLIC_ENV === 'development') localStorage.setItem('token', `Bearer ${res.data.token}`)
 
           if(context?.alert) {
             context?.setAlert({

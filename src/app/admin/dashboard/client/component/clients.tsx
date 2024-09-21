@@ -112,7 +112,7 @@ const ClientComponent: React.FC = () => {
    
       {  
         clients && clients[0] ? (
-          <div className='grid grid-cols-3 gap-3 md:grid-cols-4'>
+          <div className='grid grid-cols-2 sm:grid-cols-3 gap-3 md:grid-cols-4'>
             {
               clients.map((item, index)=><div className='col-span-1 bg-white shadow-xl p-2' key={index}>
                   <div style={{ position: 'relative', height: '100px' }} className="w-[100%] mx-auto lg:w-[80%]">

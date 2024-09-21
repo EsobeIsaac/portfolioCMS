@@ -7,10 +7,10 @@ import Testimonials from './component/testimonials'
 const Testimonial: React.FC = () => {
 
   return (
-    <>
+    <div>
       <Intro/>
       <Testimonials/>
-    </>
+    </div>
   );
 };
 

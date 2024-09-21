@@ -9,10 +9,10 @@ const FormComponent: React.FC = () => {
   
 
   return (
-    <>
+    <div>
       <Intro/>
       <Tools/>
-    </>
+    </div>
   );
 };
 

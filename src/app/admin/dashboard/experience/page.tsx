@@ -7,10 +7,10 @@ import Experiences from './component/experiences'
 const Testimonial: React.FC = () => {
 
   return (
-    <>
+    <div>
       <Intro/>
       <Experiences/>
-    </>
+    </div>
   );
 };
 

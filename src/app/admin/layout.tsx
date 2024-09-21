@@ -35,15 +35,12 @@ export default function RootLayout({
   });
 
   return (
-    <html lang="en">
-        <body className={inter.className}>
-        <article className='px-[3%]'>
-            <AlertContext.Provider value={{alert, setAlert}}>
-            <Alert/>
-                {children}
-            </AlertContext.Provider>
-        </article>
-      </body>
-    </html>
+    
+    <article className=''>
+        <AlertContext.Provider value={{alert, setAlert}}>
+        <Alert/>
+            {children}
+        </AlertContext.Provider>
+    </article>
   );
 }

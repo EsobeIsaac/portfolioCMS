@@ -7,10 +7,10 @@ import Educations from './component/educations'
 const Testimonial: React.FC = () => {
 
   return (
-    <>
+    <div>
       <Intro/>
       <Educations/>
-    </>
+    </div>
   );
 };
 

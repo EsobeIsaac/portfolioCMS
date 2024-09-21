@@ -8,8 +8,13 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import { MdHomeRepairService } from "react-icons/md"
+import { MdHomeRepairService, MdWorkHistory, MdGroupWork, MdContactPhone, MdFeedback, MdOutlineSettings } from "react-icons/md"
 import { CgMenuLeft } from "react-icons/cg";
+import { FaAddressCard, FaUsers, FaUserGraduate, FaToolbox, FaServicestack, FaDotCircle, FaGlobe } from "react-icons/fa";
+import { AiFillInteraction, AiFillProfile } from "react-icons/ai";
+import { GiAchievement } from "react-icons/gi";
+import { IoMdLogOut } from "react-icons/io";
+
 
 
 import classes from '@/app/style/Nav.module.css'
@@ -19,6 +24,7 @@ import {AlertInterface} from '@/app/admin/components/Interface/AlertInterface';
 
 const inter = Inter({ subsets: ["latin"] });
 import RequestClass from '@/app/admin/components/requestClass';
+import PageLoading from '@/app/components/PageLoading';
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -56,31 +62,64 @@ export default function RootLayout({
         } else {
           console.log(err);
         }
+        setUser(null)
         router.push('/admin/login')
       } 
     })()
   }, [window.location.pathname])
 
 
+  // ===========LOGOUT=============
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  const logRequestClass = new RequestClass('/api/v1/user/auth/signout');
+
+    const logOut = async() => {
+
+        setLoggingOut(true)
+        try {
+          const res =  await logRequestClass.postRequest();
+
+          if(process.env.NEXT_PUBLIC_ENV === 'development') localStorage.setItem('token', `Bearer ${res.data.token}`)
+
+          if(context?.alert) {
+            context?.setAlert({
+              message: res.data.message,
+              status: res.data.status
+            })
+          }
+          
+        //   await fetchTools()
+          setLoggingOut(false)
+          setUser(null)
+          router.push('/admin/login');
+        } catch (err: any) {
+          if (err.response) {
+            if(context?.alert) {
+              context?.setAlert({
+                message: err.response.data.message,
+                status: err.response.data.status
+              })
+            }
+          } else {
+            console.log(err);
+          }
+          setLoggingOut(false)
+        } 
+    }
+
+
   // ==============================
-    const [showMenu, setShowMenu] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
   let [screenWidth, setScreenWidth] = useState<number | null>(null);
 
   useEffect(() => {
-    // Check if window is defined (this will be true only in the browser)
     if (typeof window !== 'undefined') {
-      // Set initial window width
       setScreenWidth(window.innerWidth);
-
-      // Define a resize handler
       const handleResize = () => {
         setScreenWidth(window.innerWidth);
       };
-
-      // Add event listener for window resize
       window.addEventListener('resize', handleResize);
-
-      // Clean up event listener on component unmount
       return () => {
         window.removeEventListener('resize', handleResize);
       };
@@ -94,17 +133,19 @@ export default function RootLayout({
 
   // FOR MOBILE MENU
   useEffect(()=>{
-    
-    let sideMenu = document.getElementById('menu')
-    if(sideMenu) {
-      if (showMenu === false && screenWidth! <= 787) {
-        sideMenu.style.left = "-101%";
-      }else if(showMenu === true && screenWidth! <= 787)  {
-        sideMenu.style.left = "0%";
+    if (typeof window !== 'undefined' && document.getElementById('menu')) {
+      // your code here
+      let sideMenu = document.getElementById('menu')
+      if(sideMenu) {
+        if (showMenu === false && screenWidth! <= 787) {
+          sideMenu.style.left = "-101%";
+        }else if(showMenu === true && screenWidth! <= 787)  {
+          sideMenu.style.left = "0%";
+        }
       }
     }
-
-  }, [showMenu])
+    
+  }, [showMenu, screenWidth])
 
   const navsLinks = [
     {
@@ -115,67 +156,67 @@ export default function RootLayout({
     {
       href: '/admin/dashboard/banner',
       name: 'Banner',
-      icon: <MdHomeRepairService/>
+      icon: <FaAddressCard/>
     },
     {
       href: '/admin/dashboard/client',
       name: 'Clients',
-      icon: <MdHomeRepairService/>
+      icon: <FaUsers />
     },
     {
       href: '/admin/dashboard/testimonial',
       name: 'Testimonials',
-      icon: <MdHomeRepairService/>
+      icon: <MdFeedback />
     },
     {
       href: '/admin/dashboard/cta',
       name: 'CTA',
-      icon: <MdHomeRepairService/>
+      icon: <AiFillInteraction/>
     },
     {
       href: '/admin/dashboard/education',
       name: 'Education',
-      icon: <MdHomeRepairService/>
+      icon: <FaUserGraduate/>
     },
     {
       href: '/admin/dashboard/experience',
       name: 'Experience',
-      icon: <MdHomeRepairService/>
+      icon: <MdWorkHistory />
     },
     {
       href: '/admin/dashboard/tools',
       name: 'Tools',
-      icon: <MdHomeRepairService/>
+      icon: <FaToolbox />
     },
     {
       href: '/admin/dashboard/service',
       name: 'Services',
-      icon: <MdHomeRepairService/>
+      icon: <FaServicestack />
     },
     {
       href: '/admin/dashboard/achievement',
       name: 'Achievements',
-      icon: <MdHomeRepairService/>
+      icon: <GiAchievement />
     },
     {
       href: '/admin/dashboard/portfolio',
       name: 'Portfolio',
-      icon: <MdHomeRepairService/>
+      icon: <MdGroupWork />
     },
     {
       href: '/admin/dashboard/contact',
       name: 'Contact',
-      icon: <MdHomeRepairService/>
+      icon: <MdContactPhone />
     },
     {
       href: '/admin/dashboard/logo',
       name: 'Logo',
-      icon: <MdHomeRepairService/>
+      icon: <FaDotCircle />
     },
     {
       href: '/admin/dashboard/cv',
       name: 'CV',
-      icon: <MdHomeRepairService/>
+      icon: <AiFillProfile />
     },
   ]
 
@@ -193,50 +234,81 @@ export default function RootLayout({
     status: null
   });
 
+  const [showProfile, setShowProfile] = useState(false)
+
+  useEffect(() => {
+    function tuggleProfileMenu(e: any) {
+      const target = e.target as HTMLElement; 
+
+      if(target.classList.contains('show-profile-menu')) {
+        setShowProfile(true)
+      } else {
+        setShowProfile(false)
+      }
+    }
+
+    window.addEventListener('click', tuggleProfileMenu);
+    return () => {
+      window.removeEventListener('resize', tuggleProfileMenu);
+    };
+  }, []);
+
   return (
-    user ? (
-      <html lang="en">
-        <body className={inter.className}>
-          <aside className={['w-[100%] md:w-[25%] fixed md:block bg-[rgba(0, 0, 0, 0.4)] md:bg-[#333] backdrop-blur-lg bg-black/30 h-screen p-0 close z-10 left-[-101%] md:left-0', classes.menu].join(' ')} id='menu' onClick={closeMenu}>
-          <div className='w-[60%] md:w-[100%] bg-[#333] h-screen px-5 py-10 fixed overflow-y-scroll'>
-          {
-              (screenWidth! <= 787) && <button className='bg-transparent rounded-full text-3xl text-red-600 outline-none mb-10 close'>&times;</button>
-          }
-          {
-              navsLinks.map((item, index)=>{
-              return <Link href={item.href} key={index} className='text-white flex gap-3 mb-5 items-center close'>{item.icon} {item.name}</Link>
-              })
-          }
-          </div>
-          </aside>
-          <main className="bg-gray-100 min-h-screen ml-auto md:w-[75%] w-[100%] relative">
-              <header className="bg-white flex w-full px-5 py-2">
-              <nav className="flex md:block justify-between items-center w-full">
-                  <CgMenuLeft className='md:hidden text-2xl' onClick={()=>setShowMenu((props)=>!props)}/>
-                  <div style={{ position: 'relative', height: '50px', width: '50px' }} className=" rounded-[100px] border border-black  md:ml-auto">
-                      <Image
-                          src={'/images/pic.jpg'}
-                          alt="Picture of the author"
-                          sizes="100%"
-                          fill
-                          style={{
-                          objectFit: 'cover',
-                          }}
-                          className='rounded-[100px]'
-                      />
-                  </div>
-              </nav>
-              </header>
-              <article className='px-[3%] py-10'>
-                <AlertContext.Provider value={{alert, setAlert}}>
-                  <Alert/>
-                  {children}
-                </AlertContext.Provider>
-              </article>
-          </main>
-          
-        </body>
-      </html>
-    ) : null
+    <>
+      {loggingOut && <PageLoading/>}
+      {
+        user ? (
+          <div>
+              <aside className={['w-[100%] md:w-[25%] fixed md:block bg-[rgba(0, 0, 0, 0.4)] md:bg-[#333] backdrop-blur-lg bg-black/30 h-screen p-0 close z-10 left-[-101%] md:left-0', classes.menu].join(' ')} id='menu' onClick={closeMenu}>
+                <div className='w-[60%] md:w-[100%] bg-[#333] h-screen px-5 py-10 fixed overflow-y-scroll'>
+                  {
+                      (screenWidth! <= 787) && <button className='bg-transparent rounded-full text-3xl text-red-600 outline-none mb-10 close'>&times;</button>
+                  }
+                  {
+                      navsLinks.map((item, index)=>{
+                      return <Link href={item.href} key={index} className='text-white flex gap-3 mb-5 items-center close'>{item.icon} {item.name}</Link>
+                      })
+                  }
+                </div>
+              </aside>
+              <main className="bg-gray-100 min-h-screen ml-auto md:w-[75%] w-[100%] relative">
+                  <header className="bg-white flex w-full px-5 py-2 relative">
+                    <nav className="flex md:block justify-between items-center w-full">
+                      <CgMenuLeft className='md:hidden text-2xl' onClick={()=>setShowMenu((props)=>!props)}/>
+                      <div className='md:ml-auto flex items-center justify-end w-fit gap-3'>
+                        <Link href={'/'} className='bg-clip-text text-gray-800 bg-gradient-to-br from-white to-gray-800 text-5xl'><FaGlobe /></Link>
+                        <div style={{ position: 'relative', height: '50px', width: '50px' }} className=" rounded-[100px] border border-black ">
+                          <Image
+                              src={'/images/pic.jpg'}
+                              alt="Picture of the author"
+                              sizes="100%"
+                              fill
+                              style={{
+                              objectFit: 'cover',
+                              }}
+                              className='rounded-[100px] show-profile-menu'
+                          />
+                        </div>
+                      </div>
+                      <div className={['bg-white shadow-md top-16 right-2 p-4', showProfile ? 'absolute' : 'hidden'].join(' ')}>
+                        <ul>
+                          <li><Link href={'/admin/dashboard/change-password'} className='text-black flex gap-3 mb-3 items-center text-sm'><MdOutlineSettings /> Change Password</Link></li>
+                          <li className='h-[1px] w-full mb-3 bg-gray-200'></li>
+                          <li><button className='text-red-500bsi flex gap-3 mb-3 items-center text-sm' onClick={()=>logOut()}><IoMdLogOut/> Logout</button></li>
+                        </ul>
+                      </div>
+                    </nav>
+                  </header>
+                  <article className='px-[3%] py-10'>
+                    <AlertContext.Provider value={{alert, setAlert}}>
+                      <Alert/>
+                      {children}
+                    </AlertContext.Provider>
+                  </article>
+              </main>  
+            </div>
+        ) : null
+      }
+    </>
   );
 }

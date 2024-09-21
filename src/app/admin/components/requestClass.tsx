@@ -7,7 +7,7 @@ export default class RequestClass {
         const response = await axiosInstance.get(this.url, {
           headers: {
             'Content-Type': 'multipart/form-data',
-            'Authorization': localStorage.getItem('token')
+            'Authorization': process.env.NEXT_PUBLIC_ENV === 'development' ? localStorage.getItem('token') : undefined
           },
         });
         return response
@@ -23,7 +23,7 @@ export default class RequestClass {
         return response
     }
 
-    async postRequest(body: object) {
+    async postRequest(body?: object) {
       const response = await axiosInstance.post(this.url, body, {
           headers: {
             'Content-Type': 'multipart/form-data',
