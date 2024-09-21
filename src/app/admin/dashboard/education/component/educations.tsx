@@ -88,7 +88,7 @@ const EducationsComponent: React.FC = () => {
 
   useEffect(()=>{
     fetchEducations()
-  }, [])
+  })
 
   interface showEducationFormInterface {
     command: Boolean,

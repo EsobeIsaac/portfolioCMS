@@ -7,7 +7,7 @@ import getWebContent from '@/app/admin/components/getWebContents'
 import AlertContext from '@/app/admin/components/context/AlertContext'
 import LoadingBtn from '@/app/admin/components/Loading/LoadingBtn';
 
-const educationIntroComponent: React.FC = () => {
+const EducationIntroComponent: React.FC = () => {
 
   const context = useContext(AlertContext)
 
@@ -98,4 +98,4 @@ const educationIntroComponent: React.FC = () => {
   );
 };
 
-export default educationIntroComponent;
+export default EducationIntroComponent;

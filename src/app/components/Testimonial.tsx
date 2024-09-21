@@ -84,7 +84,7 @@ const Testimonials: React.FC<any> = ({testimonial}) => {
               <div className='col-span-3 md:col-span-2'>
             <Slider {...sliderSettings}>
                 {testimonials.map((item) => (
-                    <div className='md:p-3 p-1'>
+                    <div className='md:p-3 p-1' key={item._id}>
                 <div key={item._id} className='shadow-md bg-white p2 relative'>
                         <div style={{ position: 'relative', width: '100%', height: '200px' }}>
                             <Image

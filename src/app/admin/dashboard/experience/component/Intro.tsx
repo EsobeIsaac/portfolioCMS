@@ -7,7 +7,7 @@ import getWebContent from '@/app/admin/components/getWebContents'
 import AlertContext from '@/app/admin/components/context/AlertContext'
 import LoadingBtn from '@/app/admin/components/Loading/LoadingBtn';
 
-const experienceIntroComponent: React.FC = () => {
+const ExperienceIntroComponent: React.FC = () => {
 
   const context = useContext(AlertContext)
 
@@ -98,4 +98,4 @@ const experienceIntroComponent: React.FC = () => {
   );
 };
 
-export default experienceIntroComponent;
+export default ExperienceIntroComponent;
