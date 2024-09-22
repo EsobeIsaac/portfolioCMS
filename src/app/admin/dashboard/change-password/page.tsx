@@ -79,7 +79,7 @@ const ChangePasswordPage = () => {
 
   return (
     <div className="min-h-screen py-12 sm:px-6 lg:px-8">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 mb-10">
+        <h2 className="mt-6 text-center text-md md:text-xl font-extrabold text-gray-900 mb-10">
           Reset Your Password
         </h2>
         <div className="py-8 px-4 sm:px-10">

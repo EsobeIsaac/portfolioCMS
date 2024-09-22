@@ -74,45 +74,47 @@ const Testimonials: React.FC<any> = ({testimonial}) => {
     
 
     return (
+      <section className='min-h-screen flex justify-center items-center w-full'>
         <div className='max-w-[1200px] px-[3%] py-20 mx-auto relative' id='testimonials'>
-              <div className='grid grid-cols-3 items-start md:space-x-16 md:bg-transparent'>
+          <div className='grid grid-cols-3 items-start md:space-x-16 md:bg-transparent'>
 
-              <div className='col-span-3 md:col-span-1'>
-            <h2 className='text-[40px] font-bold leading-[4rem]'>{testimonial.title}</h2>         
-              </div>
+          <div className='col-span-3 md:col-span-1'>
+        <h2 className='text-[40px] md:text-[50px] font-bold leading-[4rem]'>{testimonial.title}</h2>         
+          </div>
 
-              <div className='col-span-3 md:col-span-2'>
-            <Slider {...sliderSettings}>
-                {testimonials.map((item) => (
-                    <div className='md:p-3 p-1' key={item._id}>
-                <div key={item._id} className='shadow-md bg-white p2 relative'>
-                        <div style={{ position: 'relative', width: '100%', height: '200px' }}>
-                            <Image
-                                src={item.image}
-                                alt="Picture of the author"
-                                sizes="100%"
-                                fill
-                                style={{
-                                objectFit: 'cover',
-                                }}
-                            />
-                        </div>
-                        <div className='p-5 bg-white shadow-2xl text-2xl absolute top-[170px] left-5 rounded-full'>
-                        <FaQuoteLeft className='text-xl text-blue-900'/>
-                        </div>
-                        <blockquote className='w-full bg-white px-2 py-5 rounded-md pt-16'>
-                            <p className='text-sm mb-5'>{item.testimonial}</p>
-                            <cite className='text-md'><strong>{item.name}</strong></cite><br/>
-                            <em className='text-sm'>{item.profile}</em>
-                        </blockquote>
+          <div className='col-span-3 md:col-span-2'>
+        <Slider {...sliderSettings}>
+            {testimonials.map((item) => (
+                <div className='md:p-3 p-1' key={item._id}>
+            <div key={item._id} className='shadow-md bg-white p2 relative'>
+                    <div style={{ position: 'relative', width: '100%', height: '200px' }}>
+                        <Image
+                            src={item.image}
+                            alt="Picture of the author"
+                            sizes="100%"
+                            fill
+                            style={{
+                            objectFit: 'cover',
+                            }}
+                        />
                     </div>
+                    <div className='p-5 bg-white shadow-2xl text-xl md:text-2xl absolute top-[170px] left-5 rounded-full'>
+                    <FaQuoteLeft className='text-md md:text-xl text-blue-900'/>
                     </div>
-                    
-                  ))}
-            </Slider>
-                  </div>
+                    <blockquote className='w-full bg-white px-2 py-5 rounded-md pt-16'>
+                        <p className='text-sm mb-5'>{item.testimonial}</p>
+                        <cite className='text-md'><strong>{item.name}</strong></cite><br/>
+                        <em className='text-sm'>{item.profile}</em>
+                    </blockquote>
+                </div>
+                </div>
+                
+              ))}
+        </Slider>
               </div>
+          </div>
         </div>
+      </section>
     )
 }
 

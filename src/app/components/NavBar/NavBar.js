@@ -38,7 +38,7 @@ export default function NavBar({logo, ctaBtn}) {
 
   return (
     <nav className='relative z-[99] px-[3%] py-5 md:py-8 max-w-[1200px] mx-auto flex items-center justify-between'>
-      <Image src={logo.image} className='object-fill my-[-20px]' width={70} height={70} alt={logo.alt}/>
+      <Image src={logo.image} className='object-fill my-[-20px]' width={60} height={60} alt={logo.alt}/>
       
       <div className={`close ${classes.mobileMenuLayer}`} id='mobileMenuLayer' onClick={closeMenu}>
         <ul className={['flex items-center text-[16px] font-[500] space-x-4', classes.mobileMenu].join(' ')}>

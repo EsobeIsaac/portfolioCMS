@@ -84,7 +84,7 @@ const ToolIntroComponent: React.FC = () => {
   return (
     toolIntro ? (
       <form onSubmit={handleSubmit}>
-        <h2 className='text-xl font-semibold text-slate-700 mb-5'>TOOL INTRO SECTION:</h2>
+        <h2 className='text-md md:text-xl font-semibold text-slate-700 mb-5'>TOOL INTRO SECTION:</h2>
 
       <TextInput
         label="Title"

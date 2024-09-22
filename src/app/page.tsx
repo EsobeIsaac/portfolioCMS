@@ -43,7 +43,7 @@ function Home() {
     }, [])
 
     return (
-        <article className=''>
+        <article className='overflow-x-hidden w-full'>
             {
                 webContent ? (
                   <>
@@ -55,7 +55,7 @@ function Home() {
                     
                     <CtaBanner cta={webContent.cta} ctaBtn={webContent.ctaBtn} cv={webContent.cv}/>
 
-                    <section className='bg-image'>
+                    <section className='bg-image min-h-screen flex justify-center items-center w-full'>
                       <div className='grid lg:grid-cols-3 md:grid-cols-3 gap-5 max-w-[1200px] px-[3%] pt-40 pb-20 mx-auto items-start '>
                       <div>
                         <Education education={webContent.education}/>

@@ -76,15 +76,15 @@ const Services: React.FC<any> = ({portfolio}) => {
     
 
     return (
-        <div className=' py-20  relative' id='portolio'>
-            <h2 className='text-[50px] font-bold mb-8 leading-[4rem] text-center'>{portfolio.title}</h2>
+        <div className=' py-20 min-h-screen w-full relative' id='portolio'>
+            <h2 className='text-[40px] md:text-[50px] font-bold mb-[80px] leading-[4rem] text-center'>{portfolio.title}</h2>
             <Slider {...sliderSettings}>
                 {portfolios.map((item) => (
                 <div key={item._id} className='px-1 md:px-2'>
                     <div style={{backgroundImage: `linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(${item.image})`}} className='bg-cover bg-no-repeat'>
                         <div className='max-w-[600px] mx-auto py-10 md:py-20 text-center'>
                         <h4 className='bg-gray-400 text-white rounded-md py-2 px-5 text-center w-fit mx-auto mb-5'>{item.tag}</h4>
-                        <h2 className='text-2xl text-white text-center mb-5'>{item.title}</h2>
+                        <h2 className='text-xl md:text-2xl text-white text-center mb-5'>{item.title}</h2>
                         <p className='text-gray-100 mb-10'>{item.description}</p>
                         <Link href={item.url} target='_blank' className='text-white border border-white p-4 mt-20'>Case Study</Link>
                         </div>

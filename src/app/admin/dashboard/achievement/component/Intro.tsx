@@ -84,7 +84,7 @@ const AchievementIntroComponent: React.FC = () => {
   return (
     achievementIntro ? (
       <form onSubmit={handleSubmit}>
-        <h2 className='text-xl font-semibold text-slate-700 mb-5'>ACHIEVEMENTS INTRO SECTION:</h2>
+        <h2 className='text-md md:text-xl font-semibold text-slate-700 mb-5'>ACHIEVEMENTS INTRO SECTION:</h2>
 
       <TextInput
         label="Title"

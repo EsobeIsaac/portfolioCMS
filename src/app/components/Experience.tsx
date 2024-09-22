@@ -39,7 +39,7 @@ const Experience: React.FC<any> = ({experience}) => {
                     experiences[0] && experiences.map((item)=>(
                         <li className="py-5" key={item._id}>
                             <h5 className='text-sm text-blue-500'>{item.start.replace(/-/g, '/')} - {item.end.replace(/-/g, '/')}</h5>
-                            <h5 className='text-2xl'>{item.company}</h5>
+                            <h5 className='text-xl md:text-2xl'>{item.company}</h5>
                             <h5 className='text-md font-semibold mb-3'>{item.title}</h5>
         
                             <p className='text-sm'>{item.description}</p>

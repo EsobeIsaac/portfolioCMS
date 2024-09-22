@@ -25,14 +25,14 @@ const Clients: React.FC<any> = ({client}) => {
     }, [])
 
     return (
-        <section id='clients'>
+        <section id='clients' className='min-h-screen flex justify-center items-center w-full'>
             {
                 client ? (
                     <div className='grid grid-cols-1 md:grid-cols-2 space-y-16 md:space-x-16 md:space-y-0 max-w-[1200px] px-[3%] pt-10 md:pt-20 pb-40 mx-auto md:items-start'>
 
                         <div className='col-span-1'>
-                            <h2 className='text-[50px] font-bold mb-8 leading-[4rem]'>{client.title}</h2>
-                            <p className='text-lg'>{client.description}</p>
+                            <h2 className='text-[40px] md:text-[50px] font-bold mb-8 leading-[4rem]'>{client.title}</h2>
+                            <p className='text-md md:text-lg'>{client.description}</p>
                         </div>
 
                         <div className='col-span-1 '>

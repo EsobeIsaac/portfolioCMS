@@ -53,7 +53,7 @@ const CtaBanner: React.FC<any> = ({cta, ctaBtn, cv}) => {
                 </div>
                 <div className='flex flex-col space-y-5 mt-5'>
                     <Link href={ctaBtn.link} className='bg-blue-700 text-white py-2 px-3'>{ctaBtn.title}</Link>
-                    <Link href={cv.link} className='bg-gray-200 text-black py-2 px-3 flex items-center' download='cv.pdf'><MdDownloadForOffline className='text-[#333] text-lg mr-2'/> {cv.text}</Link>
+                    <Link href={cv.link} className='bg-gray-200 text-black py-2 px-3 flex items-center' download='cv.pdf'><MdDownloadForOffline className='text-[#333] text-md md:text-lg mr-2'/> {cv.text}</Link>
                 </div>
             </div>
         </div>
