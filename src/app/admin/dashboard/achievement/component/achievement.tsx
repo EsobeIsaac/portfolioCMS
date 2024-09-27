@@ -117,7 +117,7 @@ const AchievementComponent: React.FC = () => {
           <div className='grid grid-cols-2 gap-3 md:grid-cols-4'>
             {
               achievement.map((item, index)=><div className='col-span-1 bg-white shadow-xl p-2' key={index}>
-                  <div style={{ position: 'relative', height: '100px' }} className="w-[100%] mx-auto lg:w-[80%]">
+                  <div style={{ position: 'relative', height: '60px', width: '60px' }} className=" mx-auto ">
                     <Image
                         src={item.image}
                         alt={item.title}

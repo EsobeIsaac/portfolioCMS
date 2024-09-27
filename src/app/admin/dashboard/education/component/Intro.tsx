@@ -20,7 +20,7 @@ const EducationIntroComponent: React.FC = () => {
   useEffect(()=>{
     (async() => {
       const educationIntroRes = await getWebContent()
-      setEducationIntro(educationIntroRes.data.testimonial)
+      setEducationIntro(educationIntroRes.data.education)
     })()
   }, [])
   

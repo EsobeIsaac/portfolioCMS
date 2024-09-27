@@ -53,7 +53,7 @@ export default function NavBar({logo, ctaBtn}) {
           <li><a className='link' href='#testimonials'>Testimonials</a></li>
           <li><a className='link' href='#achievements'>Achievements</a></li>
           <li><a className='link' href='#contact'>Contact Me</a></li>
-          <li className={classes.ctaBtn}><a href={ctaBtn.link} className='hover:bg-blue-700 border w-full md:w-fit border-blue-500 text-blue-500 hover:text-white text-center py-4 px-6 link' target='_blank'>{ctaBtn.title}</a></li>
+          <li className={classes.ctaBtn}><a href={ctaBtn.link} className='hover:bg-blue-700 border w-full md:w-fit border-blue-500 text-blue-500 hover:text-white text-center py-2 px-4 link' target='_blank'>{ctaBtn.title}</a></li>
         </ul>
       </div>
       <div className={classes.mobileControl}>

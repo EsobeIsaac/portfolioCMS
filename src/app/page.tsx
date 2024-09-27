@@ -56,14 +56,14 @@ function Home() {
                     <CtaBanner cta={webContent.cta} ctaBtn={webContent.ctaBtn} cv={webContent.cv}/>
 
                     <section className='bg-image min-h-screen flex justify-center items-center w-full'>
-                      <div className='grid lg:grid-cols-3 md:grid-cols-3 gap-5 max-w-[1200px] px-[3%] pt-40 pb-20 mx-auto items-start '>
-                      <div>
+                      <div className='grid lg:grid-cols-3 md:grid-cols-3 gap-5 max-w-[1200px] px-[3%] py-20 md:pt-40 mx-auto items-start '>
+                      <div id='education'>
                         <Education education={webContent.education}/>
                       </div>
-                      <div>
+                      <div id='experiences'>
                         <Experience experience={webContent.experience}/>
                       </div>
-                      <div>
+                      <div id='tools'>
                         <Tools tool={webContent.tools}/>
                       </div>
                     </div>

@@ -4,6 +4,7 @@ import getWebContent from '../admin/components/getWebContents'
 import Image from 'next/image'
 import Link from 'next/link'
 import axiosInstance from './AxiosInstance'
+import AOS from 'aos';
 
 interface ServiceInterface {
     _id: string,
@@ -19,6 +20,7 @@ const Services: React.FC<any> = ({service, ctaBtn}) => {
     const [services, setServices] = useState<ServiceInterface[]>([])
 
     useEffect(()=>{
+        AOS.init();
         (async() => {
           const res = await axiosInstance.get('/api/v1/service');
           console.log(res.data.data)
@@ -27,20 +29,20 @@ const Services: React.FC<any> = ({service, ctaBtn}) => {
     }, [])
 
     return (
-        <section id='services min-h-screen flex justify-center items-center w-full'>
+        <section id='services' className='min-h-screen flex justify-center items-center w-full'>
             {
                 services ? (
                     <div className=' max-w-[1200px] px-[3%] py-20 mx-auto items-center'>
 
-                            <h2 className='text-[40px] md:text-[50px] font-bold mb-8 leading-[4rem] text-center'>{service.title}</h2>
+                            <h2 className='text-[35px] md:text-[50px] font-bold mb-8 leading-[2.5rem] md:leading-[4rem] text-center'>{service.title}</h2>
                             <p className='text-md md:text-lg text-center'>{service.description}</p>
 
-                            <div className='md:grid md:grid-cols-4 mt-20 space-x-5'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-20 gap-5'>
                                 {
                                     services[0] ? services.map((item, index) => {
                                         return(
-                                            <div className='col-span-1 text-center bg-white shadow-xl px-3 py-8' key={index}>
-                                                <div style={{ position: 'relative', width: '80%', height: '100px', margin: 'auto' }}>
+                                            <div className='col-span-1 text-center bg-white shadow-xl px-3 py-8' key={index} data-aos="fade-up">
+                                                <div style={{ position: 'relative', width: '50px', height: '50px', margin: 'auto' }} className="shadow-md rounded-full p-4">
                                                     <Image
                                                     src={item.image}
                                                     alt="Picture of the author"
@@ -48,10 +50,11 @@ const Services: React.FC<any> = ({service, ctaBtn}) => {
                                                     fill
                                                     style={{
                                                         objectFit: 'contain',
+                                                        inset: 1
                                                     }}
                                                     />
                                                 </div>
-                                                <h2 className='text-md md:text-lg mt-5'>{item.title}</h2>
+                                                <h2 className='text-lg my-5 font-semibold'>{item.title}</h2>
                                                 <p>{item.description}</p>
                                             </div>
                                         )

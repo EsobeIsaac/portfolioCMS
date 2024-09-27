@@ -4,6 +4,7 @@ import getWebContent from '../admin/components/getWebContents'
 import Image from 'next/image'
 import Link from 'next/link'
 import axiosInstance from './AxiosInstance'
+import AOS from 'aos'
 
 interface ExperienceInterface {
     _id: string,
@@ -21,6 +22,7 @@ const Experience: React.FC<any> = ({experience}) => {
     const [experiences, setExperiences] = useState<ExperienceInterface[]>([])
 
     useEffect(()=>{
+        AOS.init();
         (async() => {
           const res = await axiosInstance.get('/api/v1/experience');
           console.log(res.data.data)
@@ -29,15 +31,15 @@ const Experience: React.FC<any> = ({experience}) => {
     }, [])
 
     return (
-        <div id='experiences'>
+        <div>
             <div className='flex items-center space-x-5 mb-4'>
                 <div className='w-20 h-[1px] bg-black'></div>
-                <h2 className='text-md'>{experience.title}</h2>
+                <h2 className='text-md font-semibold'>{experience.title}</h2>
             </div>
             <ul>
                 {
                     experiences[0] && experiences.map((item)=>(
-                        <li className="py-5" key={item._id}>
+                        <li className="py-5" key={item._id} data-aos="fade-up">
                             <h5 className='text-sm text-blue-500'>{item.start.replace(/-/g, '/')} - {item.end.replace(/-/g, '/')}</h5>
                             <h5 className='text-xl md:text-2xl'>{item.company}</h5>
                             <h5 className='text-md font-semibold mb-3'>{item.title}</h5>

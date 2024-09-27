@@ -7,20 +7,20 @@ import getWebContent from '@/app/admin/components/getWebContents'
 import AlertContext from '@/app/admin/components/context/AlertContext'
 import LoadingBtn from '@/app/admin/components/Loading/LoadingBtn';
 
-const ToolIntroComponent: React.FC = () => {
+const ContactIntroComponent: React.FC = () => {
 
   const context = useContext(AlertContext)
 
-  interface ToolIntro {
+  interface contactIntro {
     [index: string] : string
   }
 
-  const [toolIntro, setToolIntro] = useState<ToolIntro | null>(null)
+  const [contactIntro, setContactIntro] = useState<contactIntro | null>(null)
 
   useEffect(()=>{
     (async() => {
-      const toolIntroRes = await getWebContent()
-      setToolIntro(toolIntroRes.data.tools)
+      const contactIntroRes = await getWebContent()
+      setContactIntro(contactIntroRes.data.tools)
     })()
   }, [])
   
@@ -30,8 +30,8 @@ const ToolIntroComponent: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setToolIntro({
-      ...toolIntro,
+    setContactIntro({
+      ...contactIntro,
       [name]: value,
     });
   };
@@ -43,9 +43,9 @@ const ToolIntroComponent: React.FC = () => {
   
     const formData = new FormData();
   
-    for (let key in toolIntro) {
-      console.log(toolIntro[key as keyof typeof toolIntro]);
-      formData.append(key, toolIntro[key as keyof typeof toolIntro]);
+    for (let key in contactIntro) {
+      console.log(contactIntro[key as keyof typeof contactIntro]);
+      formData.append(key, contactIntro[key as keyof typeof contactIntro]);
     }
   
     formData.append("tag", "contact");
@@ -63,7 +63,7 @@ const ToolIntroComponent: React.FC = () => {
           status: res.data.status
         })
       }
-      setToolIntro(res.data.data)
+      setContactIntro(res.data.data)
       setRequesting(false)
     } catch (err: any) {
       if (err.response) {
@@ -82,14 +82,14 @@ const ToolIntroComponent: React.FC = () => {
   
 
   return (
-    toolIntro ? (
+    contactIntro ? (
       <form onSubmit={handleSubmit}>
-        <h2 className='text-md md:text-xl font-semibold text-slate-700 mb-5'>TOOL INTRO SECTION:</h2>
+        <h2 className='text-md md:text-xl font-semibold text-slate-700 mb-5'>CONTACT INTRO SECTION:</h2>
 
       <TextInput
         label="Title"
         name="title"
-        value={toolIntro.title}
+        value={contactIntro.title}
         onChange={handleInputChange}
       />
 
@@ -102,4 +102,4 @@ const ToolIntroComponent: React.FC = () => {
   );
 };
 
-export default ToolIntroComponent;
+export default ContactIntroComponent;

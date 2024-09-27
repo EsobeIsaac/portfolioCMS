@@ -57,16 +57,11 @@ const ExperienceForm: React.FC<ExperienceFormProp> = ({fetchExperiences, experie
       const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
       
-        const formData = new FormData();
-        
-        // Iterate through Education object and append each value
-        for (const [key, value] of Object.entries(experienceT)) {
-            formData.append(key, value);
-        }
-      
         setLoading(true)
+        
         try {
-          const res = experience ? await requestClass.patchRequest(formData, experience?._id) : await requestClass.postRequest(formData);
+          const res = experience ? await requestClass.patchRequest(experienceT, experience?._id) : await requestClass.postRequest(experienceT);
+
           if(context?.alert) {
             context?.setAlert({
               message: res.data.message,

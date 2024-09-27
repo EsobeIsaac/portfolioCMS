@@ -95,7 +95,7 @@ const FormComponent: React.FC = () => {
     logo ? (
       <form onSubmit={handleSubmit}>
       <TextInput
-        label="Job Title"
+        label="Logo Text"
         name="alt"
         value={logo.alt}
         onChange={handleInputChange}

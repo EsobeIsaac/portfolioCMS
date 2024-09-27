@@ -76,7 +76,7 @@ const Testimonials: React.FC<any> = ({testimonial}) => {
     return (
       <section className='min-h-screen flex justify-center items-center w-full'>
         <div className='max-w-[1200px] px-[3%] py-20 mx-auto relative' id='testimonials'>
-          <div className='grid grid-cols-3 items-start md:space-x-16 md:bg-transparent'>
+          <div className='grid grid-cols-3 items-start gap-16 md:bg-transparent'>
 
           <div className='col-span-3 md:col-span-1'>
         <h2 className='text-[40px] md:text-[50px] font-bold leading-[4rem]'>{testimonial.title}</h2>         

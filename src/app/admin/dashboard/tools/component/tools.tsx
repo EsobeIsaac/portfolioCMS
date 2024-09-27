@@ -114,8 +114,8 @@ const ToolsComponent: React.FC = () => {
         tools && tools[0] ? (
           <div className='grid grid-cols-3 gap-3 md:grid-cols-4'>
             {
-              tools.map((item, index)=><div className='col-span-1 bg-white shadow-xl p-2' key={index}>
-                  <div style={{ position: 'relative', height: '100px' }} className="w-[100%] mx-auto lg:w-[80%]">
+              tools.map((item, index)=><div className='col-span-1 bg-white shadow-xl p-2 pt-8' key={index}>
+                  <div style={{ position: 'relative', height: '50px' }} className="w-full mx-auto lg:w-[80%]">
                     <Image
                         src={item.logo}
                         alt={item.name}
@@ -127,7 +127,7 @@ const ToolsComponent: React.FC = () => {
                         }}
                     />      
                 </div>
-                <h2 className="text-md font-semibold text-slate-500 my-2 text-center">{item.name}</h2>
+                <h2 className="text-md font-semibold text-slate-500 my-2 text-center mb-8">{item.name}</h2>
                 <div className='mt-5 w-fit ml-auto'>
                     <button className='bg-slate-700 text-white text-md p-2 rounded-[100%]' onClick={()=>setShowToolForm({command: true, tool: item})}><CiEdit /></button>
                     {

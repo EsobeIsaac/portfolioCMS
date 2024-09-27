@@ -6,6 +6,7 @@ html{
   scroll-behavior: smooth;
 }
 
+
 .bg-image{
   background-image: url('./utils/images/BG.png');
   background-repeat: no-repeat;

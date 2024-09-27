@@ -95,7 +95,7 @@ const FormComponent: React.FC = () => {
     cv ? (
       <form onSubmit={handleSubmit}>
       <TextInput
-        label="Job Title"
+        label="CV Download Text"
         name="alt"
         value={cv.text}
         onChange={handleInputChange}

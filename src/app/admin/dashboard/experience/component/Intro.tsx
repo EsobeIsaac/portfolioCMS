@@ -20,7 +20,7 @@ const ExperienceIntroComponent: React.FC = () => {
   useEffect(()=>{
     (async() => {
       const experienceIntroRes = await getWebContent()
-      setExperienceIntro(experienceIntroRes.data.testimonial)
+      setExperienceIntro(experienceIntroRes.data.experience)
     })()
   }, [])
   
