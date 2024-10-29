@@ -9,7 +9,7 @@ interface FileInputProps {
   bannerImage: string | undefined;
 }
 
-const FileInput: React.FC<FileInputProps> = ({ label, name, onImageSelect, bannerImage }) => {
+const FileInput: React.FC<FileInputProps> = ({ label, name, onImageSelect, bannerImage}) => {
   const [backgroundImage, setBackgroundImage] = useState<string | undefined>(bannerImage);
   const [isPDF, setIsPDF] = useState<boolean>(false);
 
@@ -76,7 +76,7 @@ const FileInput: React.FC<FileInputProps> = ({ label, name, onImageSelect, banne
       <div
         className="w-[100%] bg-slate-500 shadow-lg rounded-2xl text-center p-5 mt-1 text-white bg-no-repeat bg-center bg-cover"
         id="drag-area"
-        style={{ backgroundImage: isPDF ? undefined : `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), ${backgroundImage ? `url(${backgroundImage})` : undefined}` }}
+        style={{ backgroundImage: backgroundImage == undefined ? undefined : `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${backgroundImage})` }}
       >
         <label htmlFor={name}>
           <input
@@ -87,11 +87,11 @@ const FileInput: React.FC<FileInputProps> = ({ label, name, onImageSelect, banne
             hidden
             accept="image/*,application/pdf"
           />
-          {isPDF ? (
+          {/* {isPDF ? (
             <FaFilePdf className="text-[150px] w-fit mx-auto" />
-          ) : (
+          ) : ( */}
             <IoMdCloudUpload className="text-[150px] w-fit mx-auto" />
-          )}
+          {/* )} */}
           <h4 className="text-md font-semibold text-white mt-5">
             Drag and Drop File To Upload
           </h4>
