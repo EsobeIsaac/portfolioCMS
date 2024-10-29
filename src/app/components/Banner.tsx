@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import getWebContent from '../admin/components/getWebContents'
 import Image from 'next/image'
 import Link from 'next/link'
-import downloadPdf from '@/app/components/functions/downloadPdf'
 
 const Banner: React.FC<any> = ({banner, ctaBtn, cv}) => {
 
@@ -35,7 +34,7 @@ const Banner: React.FC<any> = ({banner, ctaBtn, cv}) => {
                             <p className='text-md md:text-lg'>{banner.message}</p>
                             <div className='flex space-x-3 mt-8'>
                                 <Link href={ctaBtn.link} target='_blank' className='bg-blue-700 text-white py-2 px-5'>{ctaBtn.title}</Link>
-                                <button onClick={()=>downloadPdf(cv.link)} className='bg-gray-200 text-black py-2 px-5'>{cv.text}</button>
+                                <Link href={cv.link} className='bg-gray-200 text-black py-2 px-5' download='cv.pdf'>{cv.text}</Link>
                             </div>
                         </div>
                     </div>

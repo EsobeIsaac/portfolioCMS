@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MdDownloadForOffline } from "react-icons/md";
 import AOS from 'aos'
-import downloadPdf from './functions/downloadPdf'
 // interface CtaInterface {
 //     _id: string,
 //     title: string,
@@ -60,7 +59,7 @@ const CtaBanner: React.FC<any> = ({cta, ctaBtn, cv}) => {
                 </div>
                 <div className='flex flex-col space-y-5 mt-5'>
                     <Link href={ctaBtn.link} className='bg-blue-700 text-white py-2 px-3'>{ctaBtn.title}</Link>
-                    <button  onClick={()=>downloadPdf(cv.link)} className='bg-gray-200 text-black py-2 px-3 flex items-center'><MdDownloadForOffline className='text-[#333] text-md md:text-lg mr-2'/> {cv.text.split(' ')[0]}</button>
+                    <Link href={cv.link} className='bg-gray-200 text-black py-2 px-3 flex items-center' download='cv.pdf'><MdDownloadForOffline className='text-[#333] text-md md:text-lg mr-2'/> {cv.text.split(' ')[0]}</Link>
                 </div>
             </div>
         </div>
