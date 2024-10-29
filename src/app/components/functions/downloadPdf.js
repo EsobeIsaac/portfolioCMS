@@ -1,9 +1,10 @@
-const downloadPdf = (e, cvLink) => {
-    e.preventDefault();
+const downloadPdf = (cvLink) => {
     const link = document.createElement('a');
     link.href = cvLink;
-    link.download = 'cv.pdf';
+    link.setAttribute('download', 'cv.pdf');
+    document.body.appendChild(link);
     link.click();
-  };
+    document.body.removeChild(link);
+};
 
   export default downloadPdf
