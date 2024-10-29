@@ -7,6 +7,7 @@ import axiosInstance from './AxiosInstance'
 
 import Slider from 'react-slick';
 import { FaChevronLeft, FaChevronRight, FaQuoteLeft } from 'react-icons/fa';
+import LoadingSkeleton from './ui/LoadingSkeleton'
 
 
 interface TestimonialInterface {
@@ -22,12 +23,14 @@ const Testimonials: React.FC<any> = ({testimonial}) => {
 
 
     const [testimonials, setTestimonials] = useState<TestimonialInterface[]>([])
+    const [loading, setLoading] = useState<Boolean>(true)
 
     useEffect(()=>{
         (async() => {
             setTestimonials([])
           const res = await axiosInstance.get('/api/v1/testimonial');
           setTestimonials(res.data.data)
+          setLoading(false)
         })()
     }, [])
 
@@ -83,34 +86,37 @@ const Testimonials: React.FC<any> = ({testimonial}) => {
           </div>
 
           <div className='col-span-3 md:col-span-2'>
-        <Slider {...sliderSettings}>
-            {testimonials.map((item) => (
-                <div className='md:p-3 p-1' key={item._id}>
-            <div key={item._id} className='shadow-md bg-white p2 relative'>
-                    <div style={{ position: 'relative', width: '100%', height: '200px' }}>
-                        <Image
-                            src={item.image}
-                            alt="Picture of the author"
-                            sizes="100%"
-                            fill
-                            style={{
-                            objectFit: 'cover',
-                            }}
-                        />
-                    </div>
-                    <div className='p-5 bg-white shadow-2xl text-xl md:text-2xl absolute top-[170px] left-5 rounded-full'>
-                    <FaQuoteLeft className='text-md md:text-xl text-blue-900'/>
-                    </div>
-                    <blockquote className='w-full bg-white px-2 py-5 rounded-md pt-16'>
-                        <p className='text-sm mb-5'>{item.testimonial}</p>
-                        <cite className='text-md'><strong>{item.name}</strong></cite><br/>
-                        <em className='text-sm'>{item.profile}</em>
-                    </blockquote>
-                </div>
-                </div>
-                
-              ))}
-        </Slider>
+          {
+              loading ? <LoadingSkeleton /> : testimonials[0] ? (
+                  <Slider {...sliderSettings}>
+                    {testimonials.map((item) => (
+                        <div className='md:p-3 p-1' key={item._id}>
+                        <div key={item._id} className='shadow-md bg-white p2 relative'>
+                            <div style={{ position: 'relative', width: '100%', height: '200px' }}>
+                                <Image
+                                    src={item.image}
+                                    alt="Picture of the author"
+                                    sizes="100%"
+                                    fill
+                                    style={{
+                                    objectFit: 'cover',
+                                    }}
+                                />
+                            </div>
+                            <div className='p-5 bg-white shadow-2xl text-xl md:text-2xl absolute top-[170px] left-5 rounded-full'>
+                            <FaQuoteLeft className='text-md md:text-xl text-blue-900'/>
+                            </div>
+                            <blockquote className='w-full bg-white px-2 py-5 rounded-md pt-16'>
+                                <p className='text-sm mb-5'>{item.testimonial}</p>
+                                <cite className='text-md'><strong>{item.name}</strong></cite><br/>
+                                <em className='text-sm'>{item.profile}</em>
+                            </blockquote>
+                        </div>
+                        </div>     
+                      ))}
+                  </Slider>
+                    ) : <p className='text-md md:text-lg text-center font-semibold'>No Portfolio Yet!</p>
+                  }
               </div>
           </div>
         </div>

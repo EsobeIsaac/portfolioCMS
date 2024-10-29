@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import axiosInstance from './AxiosInstance'
 import AOS from 'aos';
+import LoadingSkeleton from './ui/LoadingSkeleton'
 
 
 interface AchievementInterface {
@@ -19,6 +20,7 @@ const Services: React.FC<any> = ({achievement}) => {
 
 
     const [achievements, setAchievements] = useState<AchievementInterface[]>([])
+    const [loading, setLoading] = useState<Boolean>(true)
 
     useEffect(()=>{
         AOS.init();
@@ -26,18 +28,18 @@ const Services: React.FC<any> = ({achievement}) => {
           const res = await axiosInstance.get('/api/v1/achievement');
           console.log(res.data.data)
           setAchievements(res.data.data)
+          setLoading(false)
         })()
     }, [])
 
     return (
         <section id='achievements'>
-            {
-                achievements ? (
-                    <div className=' max-w-[1200px] px-[3%] py-20 mx-auto items-center'>
-
-                            <h2 className='text-[40px] md:text-[50px] font-bold mb-8 leading-[4rem] text-center'>{achievement.title}</h2>
-                            <p className='text-md md:text-lg text-center'>{achievement.description}</p>
-
+            <div className=' max-w-[1200px] px-[3%] py-20 mx-auto items-center'>          
+                <div>
+                    <h2 className='text-[40px] md:text-[50px] font-bold mb-8 leading-[4rem] text-center'>{achievement.title}</h2>
+                    <p className='text-md md:text-lg text-center'>{achievement.description}</p>
+                    {
+                        loading ? <LoadingSkeleton/> : (
                             <div className='grid grid-cols-1 md:grid-cols-2 mt-20 gap-5'>
                                 {
                                     achievements[0] ? achievements.map((item, index) => {
@@ -64,14 +66,15 @@ const Services: React.FC<any> = ({achievement}) => {
                                                 </div>
                                             </div>
                                         )
-                                    }) : null
+                                    }) : <div className='col-span-1 md:col-span-2'>
+                                        <p className='text-md md:text-lg text-center font-semibold'>No Achievements Yet!</p>
+                                    </div>
                                 }
                             </div>
-                            
-                        
-                    </div>
-                ) : null
-            }
+                        )
+                    }
+                </div>      
+            </div>
         </section>
     )
 }

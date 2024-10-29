@@ -15,6 +15,7 @@ import Contact from './components/Contact'
 import CtaBanner from './components/CtaBanner'
 import NavBar from './components/NavBar/NavBar'
 import Footer from './components/Footer'
+import PageLoading from './components/PageLoading'
 
 interface EducationInterface {
   headline: string,
@@ -33,19 +34,21 @@ interface EducationInterface {
 function Home() {
     
     const [webContent, setWebContent] = useState<any>(null)
+    const [loading, setLoading] = useState<Boolean>(true)
 
     useEffect(()=>{
         (async() => {
           const webContentRes = await getWebContent()
           console.log(webContentRes.data)
           setWebContent(webContentRes.data)
+          setLoading(false)
         })()
     }, [])
 
     return (
         <article className='overflow-x-hidden w-full'>
             {
-                webContent ? (
+                loading ? <PageLoading/> : webContent ? (
                   <>
                   <div className='shadow-2xl fixed w-full top-0 left-0 bg-white z-40'>
                     <NavBar logo={webContent.logo} ctaBtn={webContent.ctaBtn}/>

@@ -7,6 +7,7 @@ import axiosInstance from './AxiosInstance'
 import { MdOutlineMailOutline, MdWifiCalling3, MdOutlineWhatsapp } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa6";
 import AOS from 'aos';
+import LoadingSkeleton from './ui/LoadingSkeleton'
 
 interface ContactInterface {
     email: {
@@ -36,6 +37,8 @@ const Contacts: React.FC<any> = ({contact, ctaBtn}) => {
 
 
     const [contacts, setContacts] = useState<ContactInterface>()
+    const [loading, setLoading] = useState<Boolean>(true)
+
 
     useEffect(()=>{
         AOS.init();
@@ -43,20 +46,20 @@ const Contacts: React.FC<any> = ({contact, ctaBtn}) => {
           const res = await axiosInstance.get('/api/v1/contact');
           console.log(res.data.data)
           setContacts(res.data.data)
+          setLoading(false)
         })()
     }, [])
 
     return (
         <section id='contact' className='min-h-screen flex justify-center items-center w-full'>
-            {
-                contacts ? (
-                    <div className=' max-w-[1200px] px-[3%] py-20 mx-auto items-center'>
+                
+            <div className=' max-w-[1200px] px-[3%] py-20 mx-auto items-center'>
 
-                        <div>
+                <div>
+                    <h2 className='text-[40px] md:text-[50px] font-bold mb-4 leading-[4rem] text-center md:w-[800px] mx-auto'>{contact.title}</h2>
 
-                            <h2 className='text-[40px] md:text-[50px] font-bold mb-4 leading-[4rem] text-center md:w-[800px] mx-auto'>{contact.title}</h2>
-                            {/* <p className='text-md md:text-lg text-center'>{contact.description}</p> */}
-
+                    {
+                        loading ? <LoadingSkeleton/> : contacts ? (
                             <div className='grid grid-cols-2 md:grid-cols-4 mt-20 gap-5'>
                                 {
                                     contacts.email.active && <Link target='_blank' href={`mailto:${contacts.email.address}`} className='col-span-1 hover:bg-blue-300 hover:text-white text-center bg-white shadow-md px-3 py-8' key={contacts.email._id} data-aos="fade-up">
@@ -87,15 +90,17 @@ const Contacts: React.FC<any> = ({contact, ctaBtn}) => {
                                 </Link>
                                 }
                             </div>
-                            
-                            <div className='mt-12'>
-                                <Link href={ctaBtn.link} className='block hover:bg-blue-700 border w-full md:w-fit border-blue-500 text-blue-500 hover:text-white text-center py-4 px-6 md:mx-auto' target='_blank'>{ctaBtn.title}</Link>
-                            </div>
-                        </div>
-                        
+                        ) : <p className='text-md md:text-lg text-center font-semibold'>No Contact Details Yet!</p>
+                    }
+                    
+                    
+                    <div className='mt-12'>
+                        <Link href={ctaBtn.link} className='block hover:bg-blue-700 border w-full md:w-fit border-blue-500 text-blue-500 hover:text-white text-center py-4 px-6 md:mx-auto' target='_blank'>{ctaBtn.title}</Link>
                     </div>
-                ) : null
-            }
+                </div>
+                
+            </div>
+            
         </section>
     )
 }
