@@ -87,11 +87,8 @@ const FileInput: React.FC<FileInputProps> = ({ label, name, onImageSelect, banne
             hidden
             accept="image/*,application/pdf"
           />
-          {/* {isPDF ? (
-            <FaFilePdf className="text-[150px] w-fit mx-auto" />
-          ) : ( */}
-            <IoMdCloudUpload className="text-[150px] w-fit mx-auto" />
-          {/* )} */}
+          
+          <IoMdCloudUpload className="text-[150px] w-fit mx-auto" />
           <h4 className="text-md font-semibold text-white mt-5">
             Drag and Drop File To Upload
           </h4>
