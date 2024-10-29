@@ -36,7 +36,7 @@ const Experience: React.FC<any> = ({experience}) => {
     return (
         <div>
             <div className='flex items-center space-x-5 mb-4'>
-                <div className='w-20 h-[1px] bg-black'></div>
+                <div className='w-10 h-[1.2px] bg-black'></div>
                 <h2 className='text-md font-semibold'>{experience.title}</h2>
             </div>
             {
