@@ -1,6 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import getWebContent from '../admin/components/getWebContents'
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import downloadPdf from '@/app/components/functions/downloadPdf'
@@ -23,6 +22,7 @@ const Banner: React.FC<any> = ({banner, ctaBtn, cv}) => {
                                     style={{
                                     objectFit: 'contain',
                                     }}
+                                    priority
                                 />
                             </div>
                         </div>

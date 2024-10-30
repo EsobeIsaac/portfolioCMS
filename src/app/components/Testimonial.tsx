@@ -1,8 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import getWebContent from '../admin/components/getWebContents'
 import Image from 'next/image'
-import Link from 'next/link'
 import axiosInstance from './AxiosInstance'
 
 import Slider from 'react-slick';
@@ -101,6 +99,7 @@ const Testimonials: React.FC<any> = ({testimonial}) => {
                                     style={{
                                     objectFit: 'cover',
                                     }}
+                                    priority
                                 />
                             </div>
                             <div className='p-5 bg-white shadow-2xl text-xl md:text-2xl absolute top-[170px] left-5 rounded-full'>

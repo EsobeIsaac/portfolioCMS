@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import getWebContent from '../admin/components/getWebContents'
 import Image from 'next/image'
 import Link from 'next/link'
 import axiosInstance from './AxiosInstance'
@@ -57,6 +56,7 @@ const Services: React.FC<any> = ({service, ctaBtn}) => {
                                                                     objectFit: 'contain',
                                                                     inset: 1
                                                                 }}
+                                                                priority
                                                                 />
                                                             </div>
                                                             <h2 className='text-lg my-5 font-semibold'>{item.title}</h2>

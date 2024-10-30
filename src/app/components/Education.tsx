@@ -1,10 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import getWebContent from '../admin/components/getWebContents'
-import Image from 'next/image'
-import Link from 'next/link'
 import axiosInstance from './AxiosInstance'
-import AOS from 'aos'
 import LoadingSkeleton from './ui/LoadingSkeleton'
 
 interface EducationInterface {

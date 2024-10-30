@@ -54,6 +54,7 @@ const Clients: React.FC<any> = ({client}) => {
                                                     style={{
                                                     objectFit: 'contain',
                                                     }}
+                                                    priority
                                                 />
                                             </div>
                                         </div>
