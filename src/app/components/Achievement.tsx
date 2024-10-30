@@ -54,7 +54,6 @@ const Services: React.FC<any> = ({achievement}) => {
                                                             style={{
                                                                 objectFit: 'contain',
                                                             }}
-                                                            priority
                                                             />
                                                         </div>
                                                     </div>

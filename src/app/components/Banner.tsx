@@ -22,7 +22,6 @@ const Banner: React.FC<any> = ({banner, ctaBtn, cv}) => {
                                     style={{
                                     objectFit: 'contain',
                                     }}
-                                    priority
                                 />
                             </div>
                         </div>

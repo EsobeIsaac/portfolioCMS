@@ -48,7 +48,6 @@ const Experience: React.FC<any> = ({tool}) => {
                                             style={{
                                                 objectFit: 'contain',
                                             }}
-                                            priority
                                         />
                                     </div>
                                     <h4 className='mt-2 text-md'>{item.name}</h4>

@@ -56,7 +56,6 @@ const Services: React.FC<any> = ({service, ctaBtn}) => {
                                                                     objectFit: 'contain',
                                                                     inset: 1
                                                                 }}
-                                                                priority
                                                                 />
                                                             </div>
                                                             <h2 className='text-lg my-5 font-semibold'>{item.title}</h2>

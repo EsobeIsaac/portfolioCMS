@@ -50,7 +50,6 @@ const CtaBanner: React.FC<any> = ({cta, ctaBtn, cv}) => {
                                 inset: 1
                             }}
                             className='md:rounded-full absolute'
-                            priority
                         />
                     </div>
                 </div>
