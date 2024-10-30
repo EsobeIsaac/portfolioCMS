@@ -174,6 +174,11 @@ export default function RootLayout({
       icon: <AiFillInteraction/>
     },
     {
+      href: '/admin/dashboard/cta-btn',
+      name: 'CTA Button',
+      icon: <AiFillInteraction/>
+    },
+    {
       href: '/admin/dashboard/education',
       name: 'Education',
       icon: <FaUserGraduate/>
@@ -260,7 +265,7 @@ export default function RootLayout({
         user ? (
           <div>
               <aside className={['w-[100%] md:w-[25%] fixed md:block bg-[rgba(0, 0, 0, 0.4)] md:bg-[#333] backdrop-blur-lg bg-black/30 h-screen p-0 close z-10 left-[-101%] md:left-0', classes.menu].join(' ')} id='menu' onClick={closeMenu}>
-                <div className='w-[60%] md:w-[100%] bg-[#333] h-screen px-5 py-10 fixed overflow-y-scroll'>
+                <div className='w-[80%] md:w-[100%] bg-[#333] h-screen px-5 py-10 fixed overflow-y-scroll'>
                   {
                       (screenWidth! <= 787) && <button className='bg-transparent rounded-full text-3xl text-red-600 outline-none mb-10 close'>&times;</button>
                   }

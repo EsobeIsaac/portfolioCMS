@@ -5,7 +5,7 @@ import Logo from '@/app/utils/images/BG.png'
 import { CiSearch } from "react-icons/ci";
 import { PiSlidersHorizontalLight, PiList } from "react-icons/pi";
 import Link from 'next/link'
-import classes from './NavBar.module.css';
+import classes from '@/app/components/NavBar/NavBar.module.css';
 
 export default function NavBar({logo, ctaBtn}) {
 
