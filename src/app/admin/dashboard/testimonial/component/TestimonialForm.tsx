@@ -46,7 +46,7 @@ const TestimonialForm: React.FC<TestimonialFormProp> = ({fetchTestimonials, test
       };
     
     
-      const requestClass = new RequestClass('/api/v1/Testimonial')
+      const requestClass = new RequestClass('/api/v1/testimonial')
 
       const [loading, setLoading] = useState<Boolean>(false);
     
