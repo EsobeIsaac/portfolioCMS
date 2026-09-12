@@ -7,7 +7,8 @@ import { Inter } from "next/font/google";
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
+
+import { useRouter, usePathname } from 'next/navigation';
 import { MdHomeRepairService, MdWorkHistory, MdGroupWork, MdContactPhone, MdFeedback, MdOutlineSettings } from "react-icons/md"
 import { CgMenuLeft } from "react-icons/cg";
 import { FaAddressCard, FaUsers, FaUserGraduate, FaToolbox, FaServicestack, FaDotCircle, FaGlobe } from "react-icons/fa";
@@ -37,6 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
+  const pathname = usePathname();
   const router = useRouter();
 
   const context = useContext(AlertContext)
@@ -66,7 +68,7 @@ export default function RootLayout({
         router.push('/admin/login')
       } 
     })()
-  }, [window.location.pathname])
+  }, [pathname])
 
 
   // ===========LOGOUT=============

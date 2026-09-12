@@ -2,7 +2,7 @@
 
 import {useState, useEffect, useContext} from 'react';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 import AlertContext from '@/app/admin/components/context/AlertContext';
 import Alert from '@/app/admin/components/Alert';
@@ -14,6 +14,8 @@ import Image from 'next/image';
 function Admin() {
 
   const router = useRouter();
+  const pathname = usePathname();
+
 
   const context = useContext(AlertContext)
 
@@ -42,7 +44,7 @@ function Admin() {
         router.push('/admin/login')
       } 
     })()
-  }, [window.location.pathname])
+  }, [pathname])
   return (
       <article className='flex items-center justify-center bg-white w-full h-screen'>
           <Image src={loadingIcon} height={150} width={150} alt='Loading..'/>
