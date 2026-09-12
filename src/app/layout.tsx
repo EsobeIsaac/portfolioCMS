@@ -11,20 +11,15 @@ const inter = Inter({ subsets: ["latin"] });
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
-  console.log("🔥 generateMetadata is running");
 
   try {
 
-    console.log("🔥 API URL:", process.env.NEXT_PUBLIC_APIURL;);
-
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APIURL;}/api/v1/web-content`,
+      `${process.env.NEXT_PUBLIC_APIURL}/api/v1/web-content`,
       {
         cache: "no-store",
       }
     );
-
-    console.log("🔥 API status:", response.status);
 
     if (!response.ok) {
       throw new Error(`API returned ${response.status}`);
@@ -32,11 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     const webContentRes = await response.json();
 
-    console.log("🔥 API response:", webContentRes);
-
     const webContent = webContentRes.data;
-
-    console.log("🔥 Web content:", webContent);
 
     const title =
       webContent?.banner?.headline || "Personal Website";
@@ -44,8 +35,6 @@ export async function generateMetadata(): Promise<Metadata> {
     const description =
       webContent?.banner?.message ||
       "Welcome to my portfolio";
-
-    console.log("🔥 Generated title:", title);
 
     return {
       title,
