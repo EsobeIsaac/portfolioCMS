@@ -7,6 +7,7 @@ const getWebContent = async() => {
         return result.data
     }catch(err: any) {
         if(err.result) {
+            console.log(err)
             console.log(err.result)
         }
     }
