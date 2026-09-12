@@ -1,27 +1,42 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import "./globals.css";
-import "aos/dist/aos.css";
+import 'aos/dist/aos.css';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
+  console.log("🔥 generateMetadata is running");
+
   try {
+
+    console.log("🔥 API URL:", process.env.NEXT_PUBLIC_APIURL;);
+
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APIURL}/api/v1/web-content`,
+      `${process.env.NEXT_PUBLIC_APIURL;}/api/v1/web-content`,
       {
         cache: "no-store",
       }
     );
+
+    console.log("🔥 API status:", response.status);
 
     if (!response.ok) {
       throw new Error(`API returned ${response.status}`);
     }
 
     const webContentRes = await response.json();
+
+    console.log("🔥 API response:", webContentRes);
+
     const webContent = webContentRes.data;
+
+    console.log("🔥 Web content:", webContent);
 
     const title =
       webContent?.banner?.headline || "Personal Website";
@@ -30,10 +45,7 @@ export async function generateMetadata(): Promise<Metadata> {
       webContent?.banner?.message ||
       "Welcome to my portfolio";
 
-    const image = webContent?.banner?.image?.replace(
-      "http://",
-      "https://"
-    );
+    console.log("🔥 Generated title:", title);
 
     return {
       title,
@@ -43,25 +55,16 @@ export async function generateMetadata(): Promise<Metadata> {
         title,
         description,
         type: "website",
-        images: image ? [image] : [],
       },
 
       twitter: {
         card: "summary_large_image",
         title,
         description,
-        images: image ? [image] : [],
-      },
-
-      icons: {
-        icon: webContent?.logo?.image?.replace(
-          "http://",
-          "https://"
-        ),
       },
     };
   } catch (error) {
-    console.error("Metadata error:", error);
+    console.error("🔥 Metadata error:", error);
 
     return {
       title: "Personal Website",
@@ -69,6 +72,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   }
 }
+
 
 export default function RootLayout({
   children,
